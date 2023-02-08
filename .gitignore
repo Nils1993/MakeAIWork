@@ -19,3 +19,5 @@ log.txt
 .DS_Store
 scripts/shape/__pycache__
 notebooks/variables/strings.ipynb
+practica/week1/.ipynb_checkpoints/
+practica/pics/.ipynb_checkpoints/mars.nasa-checkpoint.jpg
