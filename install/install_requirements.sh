@@ -3,20 +3,20 @@
 function installWithoutConda {
   echo "Install without conda"
 
-  echo "Install requirements with pip"
-  python -m pip install --no-cache-dir -r install/pip/no_conda.txt
+  echo "Install requierments with pip"
+  python3 -m pip install --no-cache-dir -r install/pip/no_conda.txt
 
 }  
 
-function installWithConda { 
-  if (! which conda &>/dev/null)
-  then  
-    printf "Try to install basic Python requirements without Miniconda\n"
+function installWithConda {
+  echo "Install with conda"
+  
+  if (! command -v "conda" &> /dev/null ) then
+    echo "Try to install basic Python requirements without Miniconda\n"
     installWithoutConda
   else
     conda install --yes -c conda-forge \
       beautifulsoup4 \
-      django \
       flask \
       jupyter_core \
       jupyterlab \
@@ -45,11 +45,11 @@ function installWithPip {
   echo "Install with pip"
 
   echo "Prepare pip"
-  python -m pip install --upgrade pip    
-  python -m pip install setuptools
-  python -m pip install -U sentence-transformers
+  python3 -m pip install --upgrade pip    
+  python3 -m pip install setuptools
+  python3 -m pip install -U sentence-transformers
   echo "Install requierments with pip"
-  python -m pip install --no-cache-dir -r install/pip/requirements.txt
+  python3 -m pip install --no-cache-dir -r install/pip/requirements.txt
 
 }
 

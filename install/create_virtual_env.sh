@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 
-windows=false
-
 function createVirtualEnv {    
     if [[ -d "env" ]]
     then
         echo "Virtual environment env already exists"
     else
         echo "Create virtual environment env"
-        python -m pip install virtualenv || python2 -m pip install virtualenv
-        python -m venv env || python3 -m venv env 
+        python3 -m pip install virtualenv || python2 -m pip install virtualenv
+        python3 -m venv env || python3 -m venv env 
     fi	
 
-    if ($windows) then
-        echo "Activate virtual environment env"
-        source env/Scripts/activate
+    echo "Activate virtual environment env"
+    source env/Scripts/activate
 
-        # Make sure ~/.bashrc exists
-        touch ~/.bashrc 
-        (cat ~/.bashrc | grep env) && exit 1
-        echo "Add virtual environment actionvation to bashrc"
-        activationPath=$(cygpath ${PWD}/env/Scripts/activate)
-        echo "${activationPath}"
-        echo "source ${activationPath}" >> ~/.bashrc    
-    fi
+    # Make sure ~/.bashrc exists
+    touch ~/.bashrc 
+    (cat ~/.bashrc | grep env) && exit 1
+    echo "Add virtual environment actionvation to bashrc"
+    activationPath=$(cygpath ${PWD}/env/Scripts/activate)
+    echo "${activationPath}"
+    echo "source ${activationPath}" >> ~/.bashrc    
+
+    echo "Create alias pptyhon for ptpython which starts with winpty"
+    alias ppython="winpty ptpython"
+
 }
 
 function createCondaEnv {
@@ -49,7 +49,6 @@ case "${os}" in
     ;;
     # Git Bash
     MINGW*)     
-        windows=true
         createVirtualEnv
     ;;
     *)          

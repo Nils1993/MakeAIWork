@@ -1,5 +1,4 @@
-beautifulsoup4
-django 
+beautifulsoup4 
 jupyter_core 
 jupyterlab 
 keras 
