@@ -8,7 +8,7 @@ second_number = 1
 print(first_number)
 print(second_number)
 
-for i in range(2, num):
+for i in range(1, num):
 
     next_number = first_number + second_number
     first_number = second_number
