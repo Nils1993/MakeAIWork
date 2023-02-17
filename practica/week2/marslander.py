@@ -1,7 +1,7 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 
 @dataclass
-class marslander:
+class Marslander:
     length: int
     width: float
     weight: int
