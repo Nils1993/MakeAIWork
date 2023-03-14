@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+<title>Calculate your lifespan!</title>
+</head>
+<body>
+    <py-env>
+        - pickle
+        - pandas
+        - numpy
+    </py-env>
+
+    <img src="https://media.licdn.com/dms/image/D4E0BAQFmMJFSAGnRgg/company-logo_200_200/0/1665644408843?e=2147483647&v=beta&t=I-exK-tpzVbjfTErFJmYpdLW24lejCR0mQEd7lZhwkU" alt="Make IT Work" width="200" height="200">
+
+    <h1>
+        This is my version of a webapplication that can calculate your lifespan
+    </h1>
+    
+    <p>
+        <b>
+            To calculate your lifespan enter the following information.
+        </b>
+    </p>
+    <hr>
+    <form>
+        <label for="genetic">Genetic age:</label>
+        <input type="number" id="genetic" name="genetic"><br>
+
+        <label for="exercise">Exercise, hours per day:</label>
+        <input type="number" id="exercise" name="exercise"><br>
+
+        <label for="smoking">Smoking, cigarettes per day:</label>
+        <input type="number" id="smoking" name="smoking"><br>
+
+        <label for="alcohol">Alcohol, glasses per day:</label>
+        <input type="number" id="alcohol" name="alcohol"><br>
+
+        <label for="sugar">Sugar-cubes per day:</label>
+        <input type="number" id="sugar" name="sugar"><br>
+        
+        <label for="bmi">BMI:</label>
+        <input type="number" id="bmi" name="bmi"><br>
+
+
+        <button class="py-button" py-onClick="pred()" type="button" id="btn-form"></button>
+    </form><br>
+
+    <p id = 'output'></p>
+           
+    <py-config>
+        packages = ["pandas"]
+    </py-config>
+
+    <py-script>
+        import pandas as pd
+        import numpy as np
+        import pickle
+
+        with open('C:/Users/nilsm/MakeAIWork/projects/project1/pickle/lifespan_model.pkl', 'rb') as f:
+            lr = pickle.load(f)
+
+        df = {'genetic':0, 'exercise':0, 'smoking':0, 'alcohol':0, 'sugar':0, 'bmi':0}
+        def pred(*args,**kwargs):
+            df['genetic'] = Element('genetic').value
+            df['exercise'] = Element('exercise').value
+            df['smoking'] = Element('smoking').value
+            df['alcohol'] = Element('alcohol').value
+            df['sugar'] = Element('sugar').value
+            df['bmi'] = Element('bmi').value
+
+            
+            output = Element('output')
+            output.write(df)
+    </py-script>|
+
+</body>
+</html>
