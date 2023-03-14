@@ -2,25 +2,23 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 <title>Calculate your lifespan!</title>
 </head>
 <body>
     <py-env>
-        - pickle
-        - pandas
-        - numpy
+       
     </py-env>
 
     <img src="https://media.licdn.com/dms/image/D4E0BAQFmMJFSAGnRgg/company-logo_200_200/0/1665644408843?e=2147483647&v=beta&t=I-exK-tpzVbjfTErFJmYpdLW24lejCR0mQEd7lZhwkU" alt="Make IT Work" width="200" height="200">
 
     <h1>
-        This is my version of a webapplication that can calculate your lifespan
+        This is my version of a webapplication that can calculate a lifespan
     </h1>
     
     <p>
         <b>
-            To calculate your lifespan enter the following information.
+            To calculate lifespan enter the following information.
         </b>
     </p>
     <hr>
@@ -57,8 +55,11 @@
         import pandas as pd
         import numpy as np
         import pickle
+        from pyodide.http import open_url
 
-        with open('C:/Users/nilsm/MakeAIWork/projects/project1/pickle/lifespan_model.pkl', 'rb') as f:
+        url_content = open_url('https://github.com/Nils1993/MakeAIWork/blob/main/projects/project1/pickle/lifespan_model.pkl?raw=true')
+
+        with open(url_content, 'rb') as f:
             lr = pickle.load(f)
 
         df = {'genetic':0, 'exercise':0, 'smoking':0, 'alcohol':0, 'sugar':0, 'bmi':0}
