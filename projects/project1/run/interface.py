@@ -17,12 +17,13 @@ from sklearn.linear_model import LinearRegression
 # CRITICAL	Reporting that the program can not continue
 
 # logging
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 # Global path
 Ppath = 'projects/project1/pickle/'
 
 # Load my model (open with pickel)
+logging.info('Loading model')
 with open(f'{Ppath}lifespan_model.pkl', 'rb') as f:
     lr = pickle.load(f)
 
@@ -35,6 +36,7 @@ def lifespan():
     life_quality = {'genetic':0, 'exercise':0, 'smoking':0, 'alcohol':0, 'sugar':0, 'bmi':0}
     
     # Create while true loop to fill the keys
+    logging.info('Generating questions to extract data')
     while True:
 
         # Use try function to intercept any errors that may occur
@@ -154,15 +156,18 @@ def lifespan():
     logging.debug(mass)
 
     # Calculate bmi and put it in the bmi key
+    logging.info('Calculating bmi')
     life_quality['bmi'] = round(mass / (length/100)**2, 2)
     print(f'Your BMI is: ', life_quality['bmi'])
     logging.debug(life_quality['bmi'])
 
     # Convert to dataframe using pandas
+    logging.info('Converting to dataframe')
     life_quality = pd.DataFrame(data=life_quality, index=[0])
     logging.debug(life_quality.head())
 
     # Predict lifespan using our model we saved with pickle
+    logging.info('Making a prediction based on the dataframe')
     span = lr.predict(life_quality)
 
     # Put it into a variable for easy acces and round to 1 decimal

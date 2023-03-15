@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-../scripts/model_training.py
+../build/build_model.py

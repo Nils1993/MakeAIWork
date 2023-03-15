@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-../scripts/pipeline.py
+../build/pipeline.py
