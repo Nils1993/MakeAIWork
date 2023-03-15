@@ -26,6 +26,7 @@ Ppath = 'projects/project1/pickle/'
 logging.info('Loading model')
 with open(f'{Ppath}lifespan_model.pkl', 'rb') as f:
     lr = pickle.load(f)
+logging.debug(Ppath)
 
 # Create function to collect data and make a prediction on set data
 def main():
