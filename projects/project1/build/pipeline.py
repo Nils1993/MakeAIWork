@@ -25,7 +25,7 @@ logging.info("Loading data from the database and converting to dataframe")
 
 # Specify the connection
 con = sqlite3.connect(f'{dbPath}db.sqlite3')
-# Convert to DataFrame
+# Read the right table and convert to DataFrame
 df = pd.read_sql(f'SELECT * FROM {tablename}', con=con)
 # Remove unwanted column
 df = df.drop('id', axis=1)
@@ -55,6 +55,7 @@ logging.info('Converting columns length and mass to bmi')
 
 
 for i in df['length']:
+    # Double check if length > 0
     if i > 0:
         df['bmi'] = round(df['mass'] / (df['length']/100)**2, 2)
     else:
